@@ -9,34 +9,44 @@ package paquete1;
  * @author SALA I
  */
 public class DocenteFactura extends Docente{
-    private double valorSueldo;
-    private double valorPorHora;
-    private int numHoras;
-    private double sueldo;
+    private double valorFactura;
+    private double valorIva;
+    private double valorCancelado;
     
-    public void establecerValorSueldo(double vs){
-        valorSueldo = vs;
+    public void establecerValorFactura(double vf){
+        valorFactura = vf;
     }
-    public void establecerValorPorHora(double valorxH){
-        valorPorHora = valorxH;
+    public void establecerValorIva(double vi){
+        valorIva = vi;
     }
-    public void establecerNumHoras(int num){
-        numHoras = num;
-    }
-    public void establecerSueldo(double s){
-        sueldo = s;
+    public void establecerValorCancelado(){
+        valorCancelado = valorFactura - (valorFactura * (valorIva / 100));
     }
     
-    public double obtenerValorSueldo(){
-        return valorSueldo;
+    public double obtenerValorFactura(){
+        return valorFactura;
     }
-    public double obtenerValorPorHora(){
-        return valorPorHora;
+    public double obtenerValorIva(){
+        return valorIva;
     }
-    public int obtenerNumHoras(){
-        return numHoras;
+    public double obtenerValorCancelado(){
+        return valorCancelado;
     }
-    public double obtenerSueldo(){
-        return sueldo;
+    
+@Override
+    public String toString() {
+        String c = "******Docente con factura******";
+        c = String.format("%s\nNombre: %s\nCedula: %s\n\n"
+                + "Valor de factura: %.2f\n"
+                + "Valor del iva: %.2f\n\n"
+                + "Total del valor a cancelar: %.2f\n"
+                ,c
+                ,nombre
+                ,obtenerCedula()
+                ,obtenerValorFactura()
+                ,valorIva
+                ,obtenerValorCancelado()
+        );
+        return c;
     }
 }
